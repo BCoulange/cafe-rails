@@ -1,4 +1,13 @@
-<h1>Liste des Blogs</h1>
+
+
+<div class="row">
+  <ul class="thumbnails">
+    <% @feeds.each do |feed| %>
+      <%= render "feed_thumbnail", :feed => feed %>
+    <% end %>
+  </ul>
+</div>
+
 <% @feeds.each do |feed| %>
   <% if feed.articles.size > 0 %>
     <h2><%= feed.name %></h2>
@@ -10,17 +19,6 @@
 
    <% end %>
 <% end %>
-
-
-
-<br />
-
-<% if user_signed_in? %>
-<%= link_to 'New Feed', new_feed_path %>
-   <%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "Se connecter", "login" %>
-<%end%>
 
 
 

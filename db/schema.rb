@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611200752) do
+ActiveRecord::Schema.define(:version => 20130611204922) do
 
   create_table "articles", :force => true do |t|
     t.text     "title"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20130611200752) do
     t.text     "author"
     t.text     "summary"
     t.text     "content"
-    t.string   "categories"
+    t.text     "categories"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "feed_id"

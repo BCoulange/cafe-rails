@@ -29,23 +29,16 @@ class Feed < ActiveRecord::Base
             puts "> #{fzir.entries.size} entrées trouvées"
         		fzir.entries.each do |e|
         			@article = Article.new
-        			@article.author = e.author       			
-        			@article.categories = e.categories
-#        			@article.content = e.content
-        			@article.published = e.published.to_datetime
-#        			@article.summary = e.summary
-        			@article.title = e.title
-        			@article.url = e.url
+#         			@article.author = e.author       			
+#         			@article.categories = e.categories
+# #        			@article.content = e.content
+#         			@article.published = e.published.to_datetime
+# #        			@article.summary = e.summary
+#         			@article.title = e.title
+#         			@article.url = e.url
               @article.feed_id = feed.id
               @this_feed_articles << @article
 
-              puts "@article.author.size #{@article.author.size}" unless @article.author.nil?           
-              puts "@article.categories.size #{@article.categories.size}" unless @article.categories.nil?
-              puts "@article.content.size #{@article.content.size}" unless @article.content.nil?
-              puts "@article.summary.size #{@article.summary.size}" unless @article.summary.nil?
-              puts "@article.title.size #{@article.title.size}" unless @article.title.nil?
-              puts "@article.url.size #{@article.url.size}" unless @article.url.nil?
-              puts "@article.feed_id.size #{@article.feed_id.size}" unless @article.feed_id.nil?
 
               @article.save
 

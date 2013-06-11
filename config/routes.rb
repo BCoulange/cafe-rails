@@ -1,4 +1,7 @@
 CafeRails::Application.routes.draw do
+  resources :articles
+
+
   resources :feeds
 
 

@@ -8,17 +8,4 @@
   </ul>
 </div>
 
-<% @feeds.each do |feed| %>
-  <% if feed.articles.size > 0 %>
-    <h2><%= feed.name %></h2>
-       <ul>
-     <% feed.articles.sort_by{|el| el.published}.reverse.first(5).each do |a| %>
-         <li><%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%></li>
-     <% end %>
-   </ul>
-
-   <% end %>
-<% end %>
-
-
 

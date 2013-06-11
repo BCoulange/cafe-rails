@@ -38,7 +38,16 @@ class Feed < ActiveRecord::Base
         			@article.url = e.url
               @article.feed_id = feed.id
               @this_feed_articles << @article
-              puts @article.inspect
+
+              puts @article.author.size            
+              puts @article.categories.size
+              puts @article.content.size
+              puts @article.published.size
+              puts @article.summary.size
+              puts @article.title.size
+              puts @article.url.size
+              puts @article.feed_id.size
+
               @article.save
 
         		end

@@ -42,7 +42,6 @@ class Feed < ActiveRecord::Base
               puts "@article.author.size #{@article.author.size}" unless @article.author.nil?           
               puts "@article.categories.size #{@article.categories.size}" unless @article.categories.nil?
               puts "@article.content.size #{@article.content.size}" unless @article.content.nil?
-              puts "@article.published.size #{@article.published.size}" unless @article.published.nil?
               puts "@article.summary.size #{@article.summary.size}" unless @article.summary.nil?
               puts "@article.title.size #{@article.title.size}" unless @article.title.nil?
               puts "@article.url.size #{@article.url.size}" unless @article.url.nil?

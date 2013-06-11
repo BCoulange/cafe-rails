@@ -1,9 +1,9 @@
 <h1>Liste des Blogs</h1>
-<% @feeds.each_with_index do |feed,i| %>
-  <h2><%= feed.name %></h2>
+<% @feeds.each do |feed| %>
+  <h2><%= feed.name %>(<%= feed.articles.size%>)</h2>
       <ul>
-    <% @articles[i].each do |a| %>
-        <li><%=a%></li>
+    <% feed.articles.sort_by{|el| el.published}.first(5).each do |a| %>
+        <li><%=a.title%></li>
     <% end %>
   </ul>
 <% end %>

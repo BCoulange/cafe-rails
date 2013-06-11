@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Feed < ActiveRecord::Base
 	require 'feedzirra'
 
@@ -8,13 +9,24 @@ class Feed < ActiveRecord::Base
 
   	def self.update
   		Feed.all.each do |feed|
+ 
+          # destroy old articles
+            feed.articles.each do |article|
+              article.destroy
+            end 
+
+
+
           # get feed
           puts "[Feed.update] updating #{feed.name}..."
         	fzir = Feedzirra::Feed.fetch_and_parse(feed.url)
-        	
+ 
+
+
           # get new articles
           @this_feed_articles = []
       		unless fzir.is_a?(Fixnum) || fzir.nil?
+            puts "> #{fzir.entries.size} entrées trouvées"
         		fzir.entries.each do |e|
         			@article = Article.new
         			@article.author = e.author       			
@@ -24,18 +36,12 @@ class Feed < ActiveRecord::Base
         			@article.summary = e.summary
         			@article.title = e.title
         			@article.url = e.url
+              @article.feed_id = feed.id
               @this_feed_articles << @article
               @article.save
-        		end
-            # update feed
-            @old_articles = feed.articles
-            feed.articles = @this_feed_articles
-            feed.save
 
-            # destroy old articles
-            @old_articles.each do |article|
-              article.destroy
-            end 
+        		end
+
 
       		end			
 

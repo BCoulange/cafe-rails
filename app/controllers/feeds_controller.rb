@@ -1,6 +1,6 @@
 class FeedsController < ApplicationController
+before_filter :authenticate_user!, :except => [:index]
 
-require 'feedzirra'
   # GET /feeds
   # GET /feeds.json
   def index

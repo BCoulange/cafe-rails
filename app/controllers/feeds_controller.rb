@@ -1,8 +1,21 @@
 class FeedsController < ApplicationController
+
+require 'feedzirra'
   # GET /feeds
   # GET /feeds.json
   def index
     @feeds = Feed.all
+    @articles = []
+    @feeds.each do |feed|
+      @this_feed_articles = []
+      fzir = Feedzirra::Feed.fetch_and_parse(feed.url)
+      unless fzir.is_a?(Fixnum) || fzir.nil?
+        fzir.entries.each do |e|
+          @this_feed_articles << e.title
+        end
+      end
+      @articles << @this_feed_articles
+    end
 
     respond_to do |format|
       format.html # index.html.erb

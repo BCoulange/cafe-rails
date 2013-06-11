@@ -32,7 +32,7 @@ class Feed < ActiveRecord::Base
         			@article.author = e.author       			
         			@article.categories = e.categories
         			@article.content = e.content
-        			@article.published = e.published
+        			@article.published = e.published.to_datetime
         			@article.summary = e.summary
         			@article.title = e.title
         			@article.url = e.url

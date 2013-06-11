@@ -4,7 +4,7 @@ require 'feedzirra'
   # GET /feeds
   # GET /feeds.json
   def index
-    @feeds = Feed.all
+    @feeds = Feed.all.reject{|el| el.articles.nil? || el.articles.size == 0}.sort_by{|el| el.articles.sort_by{|el| el.published}.reverse.first.published}.reverse
 
     respond_to do |format|
       format.html # index.html.erb

@@ -30,7 +30,7 @@ class Feed < ActiveRecord::Base
         		fzir.entries.each do |e|
         			@article = Article.new
          			@article.author = e.author       			
-#         			@article.categories = e.categories
+         			@article.categories = e.categories
 # #        			@article.content = e.content
          			@article.published = e.published.to_datetime
 # #        			@article.summary = e.summary

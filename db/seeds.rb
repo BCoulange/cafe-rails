@@ -57,3 +57,5 @@ Feed.create(name: "Podcast Recherche en cours", url: "http://www.rechercheencour
 Feed.create(name: "Science et conscience", url: "http://scienceetconscience.wordpress.com/feed/")
 Feed.create(name: "votons science", url: "http://votonsscience.blog.lemonde.fr/feed/")
 
+
+User.create(email: "nicolas.tupecabet@gmail.com", password: "12345678", password_confirmation: '12345678')

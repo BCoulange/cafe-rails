@@ -1,6 +1,7 @@
 #encoding: utf-8
 class Feed < ActiveRecord::Base
 	require 'feedzirra'
+  require 'sanitize'
 
   	attr_accessible :name, :url
 
@@ -33,8 +34,8 @@ class Feed < ActiveRecord::Base
          			@article.categories = e.categories
         			@article.content = e.content
          			@article.published = e.published.to_datetime
-        			@article.summary = e.summary
-         			@article.title = e.title
+        			@article.summary = Sanitize.clean(e.summary, :remove_contents => ['script', 'style'])
+         			@article.title = Sanitize.clean(e.title, :remove_contents => ['script', 'style'])
          			@article.url = e.url
               @article.feed_id = feed.id
               @this_feed_articles << @article

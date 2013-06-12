@@ -36,7 +36,7 @@ gem "twitter-bootstrap-rails"
 
 # for feeds 
 gem "feedzirra"
-
+gem 'sanitize'
 
 gem 'devise'
 

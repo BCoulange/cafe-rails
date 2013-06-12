@@ -5,7 +5,7 @@
         <% if i == 0 %>
           <div class = "span6">
               <p><b><%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%></b></p>
-              <p><%= strip_tags a.summary.split[0...60].join(' ') unless a.summary.nil?%>...</p>
+              <p><%= a.summary.split[0...60].join(' ') unless a.summary.nil?%>...</p>
           </div>
           <div class = "span6">
             <ui>

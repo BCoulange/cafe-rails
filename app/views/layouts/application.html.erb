@@ -14,12 +14,23 @@
 });
 </script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41664346-1', 'herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
+
 	<div class = "container">
 
 		<div class="hero-unit">
 		  <h1><%= image_tag "cafeavectasse.png" %> <% unless @feeds.nil? %> <span class="badge badge-important"><%= @feeds.size %> Blogs actifs</span> <% end %></h1>
 
-		  <p> L'association des blogs scientifiques francophones </p>
+		  <p> Communauté de blogs de sciences en français. </p>
 		  <small><b> Le café a actuellement des problèmes techniques, le site que vous avez l'habitude de visiter reviens au plus vite!</b></small>
 		</div>
 

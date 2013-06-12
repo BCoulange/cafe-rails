@@ -1,5 +1,10 @@
      
-      <div class="page-header"><h1><small><%= best_in_place feed, :name, :type => :input %></small></h1></div>
+      <div class="page-header"><h1><small><% if user_signed_in? %>
+        <%= best_in_place feed, :name, :type => :input %>
+        <% else %>
+          <%= feed.name %>
+        <% end %>
+      </small></h1></div>
        <div class = "row">
       <% feed.articles.sort_by{|el| el.published}.reverse.first(5).each_with_index do |a,i| %>
         <% if i == 0 %>

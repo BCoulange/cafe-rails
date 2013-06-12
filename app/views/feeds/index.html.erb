@@ -4,3 +4,9 @@
     <% end %>
 
 
+<% if user_signed_in? %>
+<%= link_to 'New Feed', new_feed_path %>
+   <%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= link_to "Se connecter", "login" %>
+<%end%>

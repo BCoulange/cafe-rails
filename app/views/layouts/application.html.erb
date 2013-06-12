@@ -11,7 +11,7 @@
 	<div class = "container">
 
 		<div class="hero-unit">
-		  <h1><%= image_tag "cafeavectasse.png" %> <span class="badge badge-important"><%= @feeds.size %> Blogs actifs</span></h1>
+		  <h1><%= image_tag "cafeavectasse.png" %> <% unless @feeds.nil? %> <span class="badge badge-important"><%= @feeds.size %> Blogs actifs</span> <% end %></h1>
 
 		  <p> L'association des blogs scientifiques francophones </p>
 		  <small><b> Le café a actuellement des problèmes techniques, le site que vous avez l'habitude de visiter reviens au plus vite!</b></small>

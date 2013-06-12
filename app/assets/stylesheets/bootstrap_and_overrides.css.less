@@ -31,3 +31,14 @@
 // @linkColor: #ff0000;
 
 
+.row-fluid {
+    .thumbnails {
+          .span2:nth-child( 6n + 1 )
+        , .span3:nth-child( 4n + 1 )
+        , .span4:nth-child( 3n + 1 )
+        , .span6:nth-child( 2n + 1 )   {    // Responsive Thumbnail "Rows" (https://github.com/twitter/bootstrap/issues/3494)
+
+            margin-left: 0;
+        }
+    }
+}

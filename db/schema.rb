@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614114809) do
+ActiveRecord::Schema.define(:version => 20130614132229) do
 
   create_table "articles", :force => true do |t|
     t.text     "title"
@@ -24,29 +24,32 @@ ActiveRecord::Schema.define(:version => 20130614114809) do
     t.datetime "updated_at", :null => false
     t.integer  "feed_id"
     t.datetime "published"
-    t.string   "images_url"
   end
 
   add_index "articles", ["feed_id"], :name => "index_articles_on_feed_id"
+
+  create_table "articles_images", :id => false, :force => true do |t|
+    t.integer "article_id"
+    t.integer "image_id"
+  end
 
   create_table "feeds", :force => true do |t|
     t.string   "name"
     t.text     "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "images_url"
+  end
+
+  create_table "feeds_images", :id => false, :force => true do |t|
+    t.integer "feed_id"
+    t.integer "image_id"
   end
 
   create_table "images", :force => true do |t|
     t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "feed_id"
-    t.integer  "article_id"
   end
-
-  add_index "images", ["article_id"], :name => "index_images_on_article_id"
-  add_index "images", ["feed_id"], :name => "index_images_on_feed_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

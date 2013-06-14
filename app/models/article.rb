@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
-  attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :feed_id, :images_url
+  attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :feed_id
 
-  has_many :images
+  has_and_belongs_to_many :images
 
   belongs_to :feed
 

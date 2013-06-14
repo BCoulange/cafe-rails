@@ -7,8 +7,8 @@ task :update_feed => :environment do
 end
 
 
-task :update_articles => :environment do 
-  puts "Updating articles..."
-  Article.refresh_images
+task :update_feed_images => :environment do 
+  puts "Finding images..."
+  Feed.update_feed_images
   puts "done."
 end

@@ -5,12 +5,16 @@
     <th>Url</th>
     <th></th>
     <th></th>
+    <th></th>    
+    <th></th>
     <th></th>
   </tr>
 
 <% @images.each do |image| %>
   <tr>
     <td><%= link_to "#{File.basename(image.url)}", image.url%></td>
+    <td><%= image_tag image.url%></td>
+    <td><%= image.feeds.map{|el| el.name}.join(", ")%></td>
     <td><%= link_to 'Show', image %></td>
     <td><%= link_to 'Edit', edit_image_path(image) %></td>
     <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

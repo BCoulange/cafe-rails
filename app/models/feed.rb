@@ -5,21 +5,32 @@ class Feed < ActiveRecord::Base
   require 'net/http'
   require 'uri'
 
-  	attr_accessible :name, :url, :images_url
+  	attr_accessible :name, :url
 
   	has_many :articles
-    has_many :images
+    has_and_belongs_to_many :images
 
 
 def self.find_images_url_from_url(url)
+
+  begin
     html = Net::HTTP.get(URI.parse(url))
   # gestion des redirections
     html =  Net::HTTP.get(URI.parse(URI.extract(html)[0])) if URI.extract(html).size == 1
+  rescue
+    puts "erreur, retry..."
+
+    retry
+  end
 
     images_url = URI.extract(html).select{ |l| l[/\.(?:gif|png|jpe?g)\b/]}.select{|l| ["f","g"].include? l[-1]}
 
     return images_url
 end
+
+  def already_image?(image)
+    return self.images.map{|el| el.url}.include? image.url
+  end
 
     def self.update_feed_images
       Feed.all.each do |feed|
@@ -36,18 +47,20 @@ end
               if Image.find_by_url(url).nil?
                 @image = Image.new
                 @image.url = url
-                @image.save
               else
                 @image = Image.find_by_url(url)
               end             
-              feed.images << @image
+              feed.images << @image unless feed.already_image? @image
+              @image.save
             end
           else
             # cleaning
             feed.images.each{|im| feed.images.destroy(im) if !images_url.include?(im.url)}
           end 
         end
-        puts "Found #{feed.images.size} images!"
+        puts "Savegarde : #{feed.save}"
+        puts "Found #{feed.images.size}!"
+        puts "saved : #{Feed.find(feed.id).images.size}"
       end
     end
 

@@ -1,6 +1,8 @@
 class Image < ActiveRecord::Base
   attr_accessible :url
 
-  belongs_to :feed
-  belongs_to :article
+  has_and_belongs_to_many :feeds
+  has_and_belongs_to_many :articles
+
+
 end

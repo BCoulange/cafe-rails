@@ -1,21 +1,21 @@
      
       <div class="page-header"><h1><small><% if user_signed_in? %>
-        <%= best_in_place feed, :name, :type => :input %>
+        <%= best_in_place feed, :name, :type => :input %><%= link_to 'show', feed%>
         <% else %>
-          <%= feed.name %>
+          <%= link_to feed.name, feed %>
         <% end %>
       </small></h1></div>
        <div class = "row">
       <% feed.articles.sort_by{|el| el.published}.reverse.first(5).each_with_index do |a,i| %>
         <% if i == 0 %>
           <div class = "span6">
-              <p><b><%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%></b><%= "(#{a.images_url.size} images)" unless a.images_url.nil? %></p>
+              <p><b><%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%></b><%= link_to "(#{a.images.size} images)", a %></p>
               <p><%= a.summary.split[0...60].join(' ') unless a.summary.nil?%>...</p>
           </div>
           <div class = "span6">
             <ui>
               <% else %>
-                <li> <%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%><%= "(#{a.images_url.size} images)" unless a.images_url.nil? %> </li>
+                <li> <%= link_to "#{a.title}", a.url%><%= " par #{a.author}" unless a.author.nil?%> le <%= a.published.strftime("%d/%m/%Y")%><%= "(#{a.images.size} images)"  %> </li>
 
               <% end %>
 

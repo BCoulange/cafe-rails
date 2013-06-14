@@ -10,6 +10,14 @@
   <%= @feed.url %>
 </p>
 
+
+<b> Images (<%=@feed.images.size%>)</b>
+<% @feed.images.each do |image| %>
+
+<%= image_tag image.url %>
+
+<% end %>
+
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <% end %>

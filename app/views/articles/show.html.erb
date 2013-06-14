@@ -35,8 +35,20 @@ pa<p id="notice"><%= notice %></p>
   <%= @article.categories %>
 </p>
 
+<b> Images (<%=@article.images.size%>)</b>
+<% @article.images.each do |image| %>
+
+<%= image_tag image.url %>
+
+<% end %>
+
+
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <% end %>
 
+
+
 <%= link_to 'Back', articles_path %>
+
+

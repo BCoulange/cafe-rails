@@ -6,3 +6,9 @@ task :update_feed => :environment do
   puts "done."
 end
 
+
+task :update_articles => :environment do 
+  puts "Updating articles..."
+  Article.refresh_images
+  puts "done."
+end

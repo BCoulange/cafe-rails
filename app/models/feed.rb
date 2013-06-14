@@ -2,6 +2,8 @@
 class Feed < ActiveRecord::Base
 	require 'feedzirra'
   require 'sanitize'
+  require 'net/http'
+  require 'uri'
 
   	attr_accessible :name, :url
 
@@ -38,6 +40,16 @@ class Feed < ActiveRecord::Base
          			@article.title = Sanitize.clean(e.title, :remove_contents => ['script', 'style'])
          			@article.url = e.url
               @article.feed_id = feed.id
+              unless e.url.nil?
+                html = Net::HTTP.get(URI.parse(e.url))
+
+                # gestion des redirections
+                html =  Net::HTTP.get(URI.parse(URI.extract(html)[0])) if URI.extract(html).size == 1
+
+                @article.images_url = URI.extract(html).select{ |l| l[/\.(?:gif|png|jpe?g)\b/]}.select{|l| ["f","g"].include? l[-1]}
+                puts  "> #{@article.images_url.size} images trouvées"
+                puts @article.images_url.inspect
+              end
               @this_feed_articles << @article
 
 
@@ -45,6 +57,8 @@ class Feed < ActiveRecord::Base
 
         		end
 
+            # clean image array
+            
 
       		end			
 

@@ -11,6 +11,7 @@
   </tr>
 
 <% @images.each do |image| %>
+<% unless image.feeds.empty? %>
   <tr>
     <td><%= link_to "#{File.basename(image.url)}", image.url%></td>
     <td><%= image_tag image.url%></td>
@@ -19,6 +20,7 @@
     <td><%= link_to 'Edit', edit_image_path(image) %></td>
     <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
